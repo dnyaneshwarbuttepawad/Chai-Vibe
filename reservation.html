@@ -131,6 +131,36 @@
                                       </script>
                                 </div>
                             </form>
+                            <form id="bookingForm" class="mb-5">
+                                <!-- form fields here -->
+                                <div>
+                                  <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit">Book Now</button>
+                                </div>
+                              </form>
+                              
+                              <script>
+                                document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+                                  e.preventDefault();
+                              
+                                  const data = {
+                                    name: document.querySelector('input[placeholder="Name"]').value,
+                                    email: document.querySelector('input[placeholder="Email"]').value,
+                                    date: document.querySelector('input[placeholder="Date"]').value,
+                                    time: document.querySelector('input[placeholder="Time"]').value,
+                                    person: document.querySelector('select').value
+                                  };
+                              
+                                  const response = await fetch('http://localhost:5000/api/book', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify(data)
+                                  });
+                              
+                                  const result = await response.json();
+                                  alert(result.message);
+                                });
+                              </script>
+                              
                         </div>
                     </div>
                 </div>
@@ -146,7 +176,7 @@
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Get In Touch</h4>
                 <p><i class="fa fa-map-marker-alt mr-2"></i>sinhagad collage kondva pune</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>9359020634</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+919359020634</p>
                 <p class="m-0"><i class="fa fa-envelope mr-2"></i>info@chaivibe.com</p>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
